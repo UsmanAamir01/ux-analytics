@@ -1,11 +1,5 @@
 import { Link, usePage } from "@inertiajs/react";
-
-const navItems = [
-  { label: "Product", href: "#product" },
-  { label: "Use cases", href: "#use-cases" },
-  { label: "Install", href: "#install" },
-  { label: "Privacy", href: "#privacy" },
-];
+import PublicLayout from "../Layouts/PublicLayout";
 
 const heroChips = ["Session replay", "Masked inputs", "Project dashboards", "Replay timeline"];
 
@@ -113,45 +107,7 @@ export default function Landing({ trackerBaseUrl }) {
 </script>`;
 
   return (
-    <div className="min-h-screen bg-[#f4f7fb] text-[#111827]">
-      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 py-4 sm:px-8">
-          <Link href="/" className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#243ee8] text-sm font-bold text-white shadow-sm shadow-blue-900/20">
-              UX
-            </span>
-            <span className="text-base font-bold tracking-tight text-slate-950">UX Analytics</span>
-          </Link>
-
-          <nav className="hidden items-center gap-1 lg:flex">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="rounded-md px-3 py-2 text-sm font-medium text-slate-600 hover:bg-[#eef4ff] hover:text-[#1f3f8f]"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <Link
-              href="/login"
-              className="hidden rounded-md px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 sm:inline-flex"
-            >
-              Login
-            </Link>
-            <Link
-              href={auth.user ? "/dashboard" : "/register"}
-              className="inline-flex h-10 items-center justify-center rounded-md bg-[#243ee8] px-4 text-sm font-semibold text-white shadow-sm shadow-blue-900/10 transition hover:-translate-y-0.5 hover:bg-[#1f35bd]"
-            >
-              {auth.user ? "Dashboard" : "Start free"}
-            </Link>
-          </div>
-        </div>
-      </header>
-
+    <PublicLayout>
       <main>
         <section className="relative overflow-hidden bg-white">
           <div className="absolute inset-x-0 top-0 h-64 bg-[#eef4ff]" />
@@ -406,18 +362,7 @@ export default function Landing({ trackerBaseUrl }) {
           </div>
         </section>
       </main>
-
-      <footer className="bg-white">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 text-sm text-slate-500 sm:px-8 md:flex-row md:items-center md:justify-between">
-          <div className="font-bold text-slate-950">UX Analytics</div>
-          <div className="flex flex-wrap gap-4">
-            <a href="#product" className="hover:text-slate-950">Product</a>
-            <a href="#install" className="hover:text-slate-950">Install</a>
-            <Link href="/login" className="hover:text-slate-950">Login</Link>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </PublicLayout>
   );
 }
 
