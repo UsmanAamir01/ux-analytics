@@ -1,9 +1,10 @@
-import { Link, usePage } from "@inertiajs/react";
+﻿import { Link, usePage } from "@inertiajs/react";
 import { useState } from "react";
 
 const navItems = [
   { label: "Product", href: "/#product" },
   { label: "Use cases", href: "/#use-cases" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Install", href: "/#install" },
   { label: "Demo", href: "/demo" },
   { label: "Privacy", href: "/#privacy" },
@@ -18,10 +19,7 @@ export default function PublicLayout({ children }) {
       <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 py-4 sm:px-8">
           <Link href="/" className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#243ee8] text-sm font-bold text-white shadow-sm shadow-blue-900/20">
-              UX
-            </span>
-            <span className="text-base font-bold tracking-tight text-slate-950">UX Analytics</span>
+            <img src="/logo.svg" alt="UX Analytics" className="h-11 w-auto" />
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex">
@@ -97,10 +95,7 @@ export default function PublicLayout({ children }) {
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 lg:grid-cols-[1.1fr_0.9fr_0.9fr]">
           <div>
             <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#243ee8] text-sm font-bold text-white">
-                UX
-              </span>
-              <span className="font-bold text-slate-950">UX Analytics</span>
+              <img src="/logo.svg" alt="UX Analytics" className="h-11 w-auto" />
             </div>
             <p className="mt-4 max-w-md text-sm leading-6 text-slate-600">
               Session replay and website UX analytics built with Laravel, React, MySQL, rrweb, and rrweb-player.
@@ -112,6 +107,7 @@ export default function PublicLayout({ children }) {
             <div className="mt-4 grid gap-3 text-sm text-slate-600">
               <a href="/#product" className="hover:text-slate-950">Features</a>
               <a href="/#install" className="hover:text-slate-950">Install script</a>
+              <a href="/pricing" className="hover:text-slate-950">Pricing</a>
               <a href="/demo" className="hover:text-slate-950">Demo guide</a>
             </div>
           </div>
@@ -130,7 +126,7 @@ export default function PublicLayout({ children }) {
 
         <div className="border-t border-slate-200">
           <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-5 text-xs text-slate-500 sm:px-8 md:flex-row md:items-center md:justify-between">
-            <span>© 2026 UX Analytics. Built for the $15 MVP milestone.</span>
+            <span>Copyright 2026 UX Analytics. Built for the $15 MVP milestone.</span>
             <span>Masked session replay for websites.</span>
           </div>
         </div>
@@ -138,3 +134,4 @@ export default function PublicLayout({ children }) {
     </div>
   );
 }
+

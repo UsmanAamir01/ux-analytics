@@ -18,6 +18,8 @@ Route::get('/demo', fn () => Inertia::render('Demo', [
     'trackerBaseUrl' => rtrim(config('app.url'), '/'),
 ]))->name('demo');
 
+Route::get('/pricing', [BillingController::class, 'publicPlans'])->name('pricing');
+
 Route::get('/test/{project:tracking_key}', [TrackingTestController::class, 'show'])
     ->name('tracking-test.show');
 
