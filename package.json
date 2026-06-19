@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@inertiajs/react": "^2.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "rrweb": "^2.0.0-alpha.18",
+    "rrweb-player": "^2.0.0-alpha.18",
+    "vite": "^7.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.0.0",
+    "laravel-vite-plugin": "^2.0.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17"
+  }
+}
