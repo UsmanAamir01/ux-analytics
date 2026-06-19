@@ -11,6 +11,12 @@ const heroChips = ["Session replay", "Masked inputs", "Project dashboards", "Rep
 
 const trustItems = ["Laravel API", "React + Inertia", "MySQL storage", "rrweb replay", "Masked capture"];
 
+const heroMetrics = [
+  { label: "Replay setup", value: "2 min" },
+  { label: "Input masking", value: "Default" },
+  { label: "Event upload", value: "Batched" },
+];
+
 const problems = [
   {
     title: "Analytics show what happened",
@@ -44,6 +50,29 @@ const productCards = [
     title: "Find friction without adding heavy tooling",
     copy: "Use page URL, browser details, replay events, and created date to understand where visits struggled.",
     points: ["Browser metadata", "Page URL history", "Timeline controls"],
+  },
+];
+
+const featureGrid = [
+  {
+    title: "Session replay",
+    copy: "Watch captured visits with rrweb-player and review what happened before a user left.",
+    accent: "bg-[#264de4]",
+  },
+  {
+    title: "Website projects",
+    copy: "Create projects for client sites or products and separate sessions by tracking key.",
+    accent: "bg-[#10b981]",
+  },
+  {
+    title: "Secure ownership",
+    copy: "Authenticated users can only view sessions attached to their own projects.",
+    accent: "bg-[#f59e0b]",
+  },
+  {
+    title: "Developer install",
+    copy: "A small public tracker script loads rrweb, batches events, and posts to your API.",
+    accent: "bg-[#0ea5e9]",
   },
 ];
 
@@ -84,11 +113,11 @@ export default function Landing({ trackerBaseUrl }) {
 </script>`;
 
   return (
-    <div className="min-h-screen bg-[#f6f8fb] text-[#111827]">
-      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur">
+    <div className="min-h-screen bg-[#f4f7fb] text-[#111827]">
+      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 py-4 sm:px-8">
           <Link href="/" className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#264de4] text-sm font-bold text-white">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#243ee8] text-sm font-bold text-white shadow-sm shadow-blue-900/20">
               UX
             </span>
             <span className="text-base font-bold tracking-tight text-slate-950">UX Analytics</span>
@@ -115,7 +144,7 @@ export default function Landing({ trackerBaseUrl }) {
             </Link>
             <Link
               href={auth.user ? "/dashboard" : "/register"}
-              className="inline-flex h-10 items-center justify-center rounded-md bg-[#264de4] px-4 text-sm font-semibold text-white shadow-sm shadow-blue-900/10 transition hover:-translate-y-0.5 hover:bg-[#1f3fba]"
+              className="inline-flex h-10 items-center justify-center rounded-md bg-[#243ee8] px-4 text-sm font-semibold text-white shadow-sm shadow-blue-900/10 transition hover:-translate-y-0.5 hover:bg-[#1f35bd]"
             >
               {auth.user ? "Dashboard" : "Start free"}
             </Link>
@@ -125,22 +154,23 @@ export default function Landing({ trackerBaseUrl }) {
 
       <main>
         <section className="relative overflow-hidden bg-white">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:py-20">
+          <div className="absolute inset-x-0 top-0 h-64 bg-[#eef4ff]" />
+          <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:py-20">
             <div>
               <div className="inline-flex rounded-full border border-[#cfe0ff] bg-[#eef4ff] px-3 py-1 text-xs font-semibold uppercase text-[#264de4]">
-                Built for product teams that need replay evidence
+                Product analytics without the noise
               </div>
-              <h1 className="mt-6 max-w-2xl text-5xl font-extrabold leading-tight tracking-tight text-slate-950 sm:text-6xl">
+              <h1 className="mt-6 max-w-2xl text-5xl font-extrabold leading-tight text-slate-950 sm:text-6xl">
                 See why users drop off, not just where.
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
-                A focused UX analytics MVP for websites: install one tracker, capture masked rrweb sessions, and replay real visits from your Laravel dashboard.
+                A professional session replay platform for websites: install one tracker, capture masked rrweb sessions, and replay real visits from your Laravel dashboard.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href={auth.user ? "/projects" : "/register"}
-                  className="inline-flex h-12 items-center rounded-md bg-[#264de4] px-5 text-sm font-bold text-white shadow-sm shadow-blue-900/20 transition hover:-translate-y-0.5 hover:bg-[#1f3fba]"
+                  className="inline-flex h-12 items-center rounded-md bg-[#243ee8] px-5 text-sm font-bold text-white shadow-sm shadow-blue-900/20 transition hover:-translate-y-0.5 hover:bg-[#1f35bd]"
                 >
                   {auth.user ? "Open projects" : "Create account"}
                 </Link>
@@ -154,32 +184,45 @@ export default function Landing({ trackerBaseUrl }) {
 
               <div className="mt-8 flex flex-wrap gap-2">
                 {heroChips.map((chip) => (
-                  <span key={chip} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600">
+                  <span key={chip} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 shadow-sm">
                     {chip}
                   </span>
                 ))}
               </div>
+
+              <div className="mt-10 grid max-w-lg grid-cols-3 gap-3">
+                {heroMetrics.map((metric) => (
+                  <div key={metric.label} className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+                    <div className="text-lg font-extrabold text-slate-950">{metric.value}</div>
+                    <div className="mt-1 text-xs font-semibold uppercase text-slate-500">{metric.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="relative">
+            <div className="relative lg:pl-4">
               <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-2xl shadow-slate-950/10">
+                <div className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-3">
+                  <div className="flex items-center gap-2">
+                    <span className="h-3 w-3 rounded-full bg-[#f87171]" />
+                    <span className="h-3 w-3 rounded-full bg-[#fbbf24]" />
+                    <span className="h-3 w-3 rounded-full bg-[#34d399]" />
+                  </div>
+                  <span className="text-xs font-semibold text-slate-500">Live replay workspace</span>
+                </div>
                 <img
                   src="/images/landing-hero.png"
                   alt="UX analytics session replay dashboard"
-                  className="aspect-[16/10] w-full object-cover"
+                  className="aspect-[16/9] w-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 left-6 right-6 rounded-lg border border-slate-200 bg-white p-4 shadow-xl shadow-slate-950/10">
-                <div className="grid grid-cols-3 gap-3">
-                  <Metric label="Events" value="Batched" />
-                  <Metric label="Inputs" value="Masked" />
-                  <Metric label="Access" value="Scoped" />
-                </div>
+              <div className="absolute -bottom-8 left-4 right-4 rounded-lg border border-slate-200 bg-white p-4 shadow-xl shadow-slate-950/10 sm:left-10 sm:right-10">
+                <DashboardMini />
               </div>
             </div>
           </div>
 
-          <div className="border-t border-slate-200 bg-[#f8fafc]">
+          <div className="border-t border-slate-200 bg-white pt-8 lg:pt-10">
             <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-5 py-5 sm:px-8">
               {trustItems.map((item) => (
                 <span key={item} className="text-xs font-bold uppercase tracking-wide text-slate-500">
@@ -190,7 +233,7 @@ export default function Landing({ trackerBaseUrl }) {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8" id="product">
+        <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8" id="product">
           <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
               <p className="text-sm font-bold uppercase text-[#264de4]">Problem</p>
@@ -201,9 +244,33 @@ export default function Landing({ trackerBaseUrl }) {
 
             <div className="grid gap-4 md:grid-cols-3">
               {problems.map((problem) => (
-                <article key={problem.title} className="rounded-lg border border-slate-200 bg-white p-5">
+                <article key={problem.title} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/[0.03]">
                   <h3 className="text-base font-bold text-slate-950">{problem.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-slate-600">{problem.copy}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white">
+          <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm font-bold uppercase text-[#264de4]">Platform</p>
+              <h2 className="mt-3 text-4xl font-extrabold leading-tight text-slate-950">
+                Everything needed for the first replay workflow.
+              </h2>
+              <p className="mt-4 text-base leading-7 text-slate-600">
+                Built with React and Tailwind on the frontend, Laravel on the backend, and rrweb for the replay data.
+              </p>
+            </div>
+
+            <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+              {featureGrid.map((feature) => (
+                <article key={feature.title} className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/[0.03]">
+                  <span className={`block h-2 w-12 rounded-full ${feature.accent}`} />
+                  <h3 className="mt-5 text-lg font-bold text-slate-950">{feature.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{feature.copy}</p>
                 </article>
               ))}
             </div>
@@ -242,8 +309,8 @@ export default function Landing({ trackerBaseUrl }) {
           </div>
         </section>
 
-        <section className="mx-auto grid max-w-7xl gap-8 px-5 py-16 sm:px-8 lg:grid-cols-[1fr_0.9fr]" id="use-cases">
-          <div className="rounded-lg border border-slate-200 bg-white p-6 md:p-8">
+        <section className="mx-auto grid max-w-7xl gap-8 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_0.9fr]" id="use-cases">
+          <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/[0.03] md:p-8">
             <p className="text-sm font-bold uppercase text-[#264de4]">Use cases</p>
             <h2 className="mt-3 text-3xl font-extrabold text-slate-950">Replay the moments that matter.</h2>
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -255,7 +322,7 @@ export default function Landing({ trackerBaseUrl }) {
             </div>
           </div>
 
-          <div className="rounded-lg border border-slate-200 bg-white p-6 md:p-8">
+          <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/[0.03] md:p-8">
             <p className="text-sm font-bold uppercase text-[#264de4]">How it starts</p>
             <h2 className="mt-3 text-3xl font-extrabold text-slate-950">Four steps from blank account to first replay.</h2>
             <div className="mt-8 space-y-3">
@@ -298,7 +365,7 @@ export default function Landing({ trackerBaseUrl }) {
           </div>
         </section>
 
-        <section id="privacy" className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+        <section id="privacy" className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div className="max-w-2xl">
               <p className="text-sm font-bold uppercase text-[#264de4]">Privacy and performance</p>
@@ -313,8 +380,8 @@ export default function Landing({ trackerBaseUrl }) {
           </div>
 
           <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {privacyItems.map((item) => (
-              <article key={item.title} className="rounded-lg border border-slate-200 bg-white p-6">
+              {privacyItems.map((item) => (
+              <article key={item.title} className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/[0.03]">
                 <h3 className="text-lg font-bold text-slate-950">{item.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-600">{item.copy}</p>
               </article>
@@ -354,11 +421,27 @@ export default function Landing({ trackerBaseUrl }) {
   );
 }
 
-function Metric({ label, value }) {
+function DashboardMini() {
   return (
-    <div>
-      <div className="text-base font-extrabold text-slate-950">{value}</div>
-      <div className="mt-1 text-xs font-semibold uppercase text-slate-500">{label}</div>
+    <div className="grid gap-3 sm:grid-cols-[1fr_1.2fr]">
+      <div className="rounded-md bg-[#eef4ff] p-3">
+        <div className="text-xs font-bold uppercase text-[#264de4]">Replay quality</div>
+        <div className="mt-2 text-2xl font-extrabold text-slate-950">96%</div>
+        <div className="mt-2 h-2 overflow-hidden rounded-full bg-white">
+          <div className="h-full w-[78%] rounded-full bg-[#264de4]" />
+        </div>
+      </div>
+      <div className="rounded-md border border-slate-200 p-3">
+        <div className="flex items-center justify-between text-xs font-semibold text-slate-500">
+          <span>Session timeline</span>
+          <span>Masked</span>
+        </div>
+        <div className="mt-3 grid grid-cols-12 gap-1">
+          {["h-6", "h-4", "h-8", "h-3", "h-7", "h-5", "h-9", "h-4", "h-6", "h-5", "h-8", "h-3"].map((height, index) => (
+            <span key={`${height}-${index}`} className={`${height} rounded bg-[#dbeafe]`} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
