@@ -7,9 +7,13 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TrackingTestController;
+use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/dashboard');
+Route::get('/', fn () => Inertia::render('Landing', [
+    'trackerBaseUrl' => rtrim(config('app.url'), '/'),
+]))->name('landing');
+
 Route::get('/test/{project:tracking_key}', [TrackingTestController::class, 'show'])
     ->name('tracking-test.show');
 
