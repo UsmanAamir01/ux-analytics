@@ -22,9 +22,9 @@ export default function Login() {
 
             <div className="relative z-10 flex h-full flex-col justify-between">
               <div>
-                <div className="mb-12 flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/15">
-                    <LogoIcon />
+                <div className="mb-12 flex items-center gap-4">
+                  <div className="flex rounded-2xl bg-white p-1 shadow-lg shadow-black/20 ring-1 ring-white/15">
+                    <img src="/images/logo.png" alt="UX Analytics" className="h-12 w-36 rounded-xl object-cover object-center" />
                   </div>
                   <div>
                     <h1 className="text-xl font-bold">UX Analytics</h1>
@@ -65,8 +65,8 @@ export default function Login() {
 
             <div className="relative w-full max-w-md">
               <div className="mb-8 text-center">
-                <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-3xl bg-gradient-to-br from-blue-600 to-violet-600 shadow-lg shadow-blue-500/25">
-                  <LogoIcon />
+                <div className="mx-auto mb-5 inline-flex rounded-3xl bg-white p-1 shadow-lg shadow-blue-500/20 ring-1 ring-slate-200">
+                  <img src="/images/logo.png" alt="UX Analytics" className="h-14 w-40 rounded-2xl object-cover object-center" />
                 </div>
 
                 <h2 className="text-3xl font-bold tracking-tight text-slate-950">
@@ -187,37 +187,6 @@ function Stat({ value, label }) {
       <p className="text-lg font-bold text-white">{value}</p>
       <p className="mt-1 text-xs text-slate-300">{label}</p>
     </div>
-  );
-}
-
-function LogoIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      className="h-6 w-6 text-white"
-      aria-hidden="true"
-    >
-      <path
-        d="M4 17V7.8C4 6.81 4.81 6 5.8 6h12.4c.99 0 1.8.81 1.8 1.8V17"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="M7 15l3-3 2.2 2.2L17 9"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M7 19h10"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
   );
 }
 

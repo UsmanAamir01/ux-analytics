@@ -15,7 +15,7 @@ export default function AppLayout({ title, children }) {
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link href="/dashboard" className="flex items-center">
-            <img src="/logo.svg" alt="UX Analytics" className="h-10 w-auto" />
+            <img src="/images/logo.png" alt="UX Analytics" className="h-11 w-36 rounded-md object-cover object-center" />
           </Link>
           <nav className="flex items-center gap-1">
             {navItems.map((item) => (

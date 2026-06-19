@@ -19,7 +19,7 @@ export default function PublicLayout({ children }) {
       <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 py-4 sm:px-8">
           <Link href="/" className="flex items-center gap-3">
-            <img src="/logo.svg" alt="UX Analytics" className="h-11 w-auto" />
+            <img src="/images/logo.png" alt="UX Analytics" className="h-12 w-40 rounded-md object-cover object-center" />
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex">
@@ -95,7 +95,7 @@ export default function PublicLayout({ children }) {
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 lg:grid-cols-[1.1fr_0.9fr_0.9fr]">
           <div>
             <div className="flex items-center gap-3">
-              <img src="/logo.svg" alt="UX Analytics" className="h-11 w-auto" />
+              <img src="/images/logo.png" alt="UX Analytics" className="h-12 w-40 rounded-md object-cover object-center" />
             </div>
             <p className="mt-4 max-w-md text-sm leading-6 text-slate-600">
               Session replay and website UX analytics built with Laravel, React, MySQL, rrweb, and rrweb-player.

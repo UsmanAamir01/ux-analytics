@@ -30,6 +30,9 @@ class BillingController extends Controller
                 'name' => 'Free',
                 'price' => '$0',
                 'period' => '/month',
+                'yearlyPrice' => '$0',
+                'yearlyPeriod' => '/year',
+                'yearlyNote' => 'Free forever',
                 'description' => 'For small websites and users testing UX Analytics.',
                 'badge' => null,
                 'features' => [
@@ -47,6 +50,9 @@ class BillingController extends Controller
                 'name' => 'Professional',
                 'price' => '$29',
                 'period' => '/month',
+                'yearlyPrice' => '$290',
+                'yearlyPeriod' => '/year',
+                'yearlyNote' => 'Save $58 yearly',
                 'description' => 'For startups, SaaS products, and growing websites.',
                 'badge' => 'Most Popular',
                 'features' => [
@@ -68,6 +74,9 @@ class BillingController extends Controller
                 'name' => 'Agency / Enterprise',
                 'price' => '$99',
                 'period' => '/month',
+                'yearlyPrice' => '$990',
+                'yearlyPeriod' => '/year',
+                'yearlyNote' => 'Save $198 yearly',
                 'description' => 'For agencies, teams, and high-traffic businesses.',
                 'badge' => null,
                 'features' => [

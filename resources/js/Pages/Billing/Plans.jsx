@@ -1,4 +1,5 @@
 import { Link, usePage } from "@inertiajs/react";
+import { useState } from "react";
 import AppLayout from "../../Layouts/AppLayout";
 import PublicLayout from "../../Layouts/PublicLayout";
 
@@ -14,6 +15,7 @@ export default function Plans({ plans, publicPage = false }) {
 
 function PricingContent({ plans, publicPage }) {
   const { auth } = usePage().props;
+  const [billingCycle, setBillingCycle] = useState("monthly");
 
   return (
     <main className={publicPage ? "bg-[#f4f7fb]" : ""}>
@@ -30,12 +32,36 @@ function PricingContent({ plans, publicPage }) {
           </div>
 
           <div className="mt-8 inline-flex rounded-xl border border-slate-200 bg-white p-1 shadow-sm">
-            <button className="h-11 rounded-lg bg-[#243ee8] px-5 text-sm font-bold text-white shadow-sm shadow-blue-900/20">
+            <button
+              type="button"
+              onClick={() => setBillingCycle("monthly")}
+              className={`h-11 rounded-lg px-5 text-sm font-bold transition ${
+                billingCycle === "monthly"
+                  ? "bg-[#243ee8] text-white shadow-sm shadow-blue-900/20"
+                  : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+              }`}
+            >
               Monthly Billing
             </button>
-            <button className="h-11 rounded-lg px-5 text-sm font-bold text-slate-500">
+            <button
+              type="button"
+              onClick={() => setBillingCycle("yearly")}
+              className={`h-11 rounded-lg px-5 text-sm font-bold transition ${
+                billingCycle === "yearly"
+                  ? "bg-[#243ee8] text-white shadow-sm shadow-blue-900/20"
+                  : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+              }`}
+            >
               Yearly Billing
-              <span className="ml-2 rounded-full bg-[#eef4ff] px-2 py-0.5 text-xs text-[#264de4]">Soon</span>
+              <span
+                className={`ml-2 rounded-full px-2 py-0.5 text-xs ${
+                  billingCycle === "yearly"
+                    ? "bg-white/15 text-white"
+                    : "bg-[#eef4ff] text-[#264de4]"
+                }`}
+              >
+                Save 2 months
+              </span>
             </button>
           </div>
 
@@ -46,6 +72,7 @@ function PricingContent({ plans, publicPage }) {
                 plan={plan}
                 href={auth.user ? "/projects" : "/register"}
                 publicPage={publicPage}
+                billingCycle={billingCycle}
               />
             ))}
           </div>
@@ -65,7 +92,11 @@ function PricingContent({ plans, publicPage }) {
   );
 }
 
-function PricingCard({ plan, href }) {
+function PricingCard({ plan, href, billingCycle }) {
+  const price = billingCycle === "yearly" ? plan.yearlyPrice : plan.price;
+  const period = billingCycle === "yearly" ? plan.yearlyPeriod : plan.period;
+  const billingNote = billingCycle === "yearly" ? plan.yearlyNote : "Billed monthly";
+
   return (
     <article
       className={`relative flex min-h-full flex-col rounded-lg border p-6 shadow-sm transition hover:-translate-y-1 ${
@@ -86,9 +117,10 @@ function PricingCard({ plan, href }) {
       </div>
 
       <div className="mt-6 flex items-end gap-1">
-        <span className="text-5xl font-extrabold tracking-tight text-slate-950">{plan.price}</span>
-        <span className="pb-2 text-sm font-semibold text-slate-500">{plan.period}</span>
+        <span className="text-5xl font-extrabold tracking-tight text-slate-950">{price}</span>
+        <span className="pb-2 text-sm font-semibold text-slate-500">{period}</span>
       </div>
+      <p className="mt-2 min-h-5 text-sm font-semibold text-[#264de4]">{billingNote}</p>
 
       <Link
         href={href}
