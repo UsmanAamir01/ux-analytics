@@ -16,14 +16,6 @@ Laravel + React/Inertia + MySQL + rrweb + rrweb-player implementation for the co
 
 ## Local setup
 
-This machine currently has PHP 8.5, but it is missing extensions Laravel/Composer need:
-
-- `openssl`
-- `mbstring`
-- `pdo_mysql`
-
-Enable those extensions or use a Laravel-ready PHP install, then run:
-
 ```powershell
 cd "C:\Users\ALLAH\Downloads\UX Insight Hub"
 composer install
